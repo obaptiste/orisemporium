@@ -2,7 +2,7 @@
 
 name = "orisemporium"
 client_id = "07024a60a4afa0197d846c2d610273dc"
-application_url = "https://pharmaceutical-barrel-pub-deborah.trycloudflare.com"
+application_url = "https://believed-metal-arrange-workplace.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://pharmaceutical-barrel-pub-deborah.trycloudflare.com/auth/callback",
-  "https://pharmaceutical-barrel-pub-deborah.trycloudflare.com/auth/shopify/callback",
-  "https://pharmaceutical-barrel-pub-deborah.trycloudflare.com/api/auth/callback"
+  "https://believed-metal-arrange-workplace.trycloudflare.com/auth/callback",
+  "https://believed-metal-arrange-workplace.trycloudflare.com/auth/shopify/callback",
+  "https://believed-metal-arrange-workplace.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

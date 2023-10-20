@@ -48,5 +48,9 @@
   "workspaces": [
     "extensions/*"
   ],
+  "engines": {
+    "node": "20.6.0",
+    "npm": "9.8.1"
+  },
   "author": "macmini"
 }

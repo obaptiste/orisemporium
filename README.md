@@ -42,8 +42,7 @@ pnpm install
 Using yarn:
 
 ```shell
-yarn dev
-```
+yarn dev```
 
 Using npm:
 
