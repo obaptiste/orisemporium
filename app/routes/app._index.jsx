@@ -110,32 +110,6 @@ const QRTableRow = ({ qrCode }) => (
   </IndexTable.Row>
 );
 
-export default function Index() {
-  const { qrCodes } = useLoaderData();
-  const navigate = useNavigate();
-
-  return (
-    <Page>
-      <ui-title-bar title="QR codes">
-        <button variant="primary" onClick={() => navigate("/app/qrcodes/new")}>
-          Create QR code
-        </button>
-      </ui-title-bar>
-      <Layout>
-        <Layout.Section>
-          <Card padding="0">
-            {qrCodes.length === 0 ? (
-              <EmptyQRCodeState onAction={() => navigate("qrcodes/new")} />
-            ) : (
-              <QRTable qrCodes={qrCodes} />
-            )}
-          </Card>
-        </Layout.Section>
-      </Layout>
-    </Page>
-  );
-}
-
 export async function action({ request }) {
   const { admin } = await authenticate.admin(request);
 
@@ -179,6 +153,32 @@ export async function action({ request }) {
   return json({
     product: responseJson.data.productCreate.product,
   });
+}
+
+export default function Index() {
+  const { qrCodes } = useLoaderData();
+  const navigate = useNavigate();
+
+  return (
+    <Page>
+      <ui-title-bar title="QR codes">
+        <button variant="primary" onClick={() => navigate("/app/qrcodes/new")}>
+          Create QR code
+        </button>
+      </ui-title-bar>
+      <Layout>
+        <Layout.Section>
+          <Card padding="0">
+            {qrCodes.length === 0 ? (
+              <EmptyQRCodeState onAction={() => navigate("qrcodes/new")} />
+            ) : (
+              <QRTable qrCodes={qrCodes} />
+            )}
+          </Card>
+        </Layout.Section>
+      </Layout>
+    </Page>
+  );
 }
 
 // export default function Index() {

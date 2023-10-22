@@ -9,32 +9,28 @@ import {
   VerticalStack,
 } from "@shopify/polaris";
 
+import Upload from "../pages/upload";
+import { Suspense } from "react";
+
 export default function AdditionalPage() {
   return (
     <Page>
-      <ui-title-bar title="Additional page" />
+      <ui-title-bar title="AI Speed Padder" />
       <Layout>
         <Layout.Section>
           <Card>
             <VerticalStack gap="3">
               <Text as="p" variant="bodyMd">
-                The app template comes with an additional page which
-                demonstrates how to create multiple pages within app navigation
-                using{" "}
-                <Link
-                  url="https://shopify.dev/docs/apps/tools/app-bridge"
-                  target="_blank"
-                >
-                  App Bridge
-                </Link>
-                .
-              </Text>
-              <Text as="p" variant="bodyMd">
-                To create your own page and have it show up in the app
+                Simply upload an image, add some tags and GPT's api will add a
+                description and suggested price
+                {/* To create your own page and have it show up in the app
                 navigation, add a page inside <Code>app/routes</Code>, and a
                 link to it in the <Code>&lt;ui-nav-menu&gt;</Code> component
-                found in <Code>app/routes/app.jsx</Code>.
+                found in <Code>app/routes/app.jsx</Code>. */}
               </Text>
+              <Suspense>
+                <Upload />
+              </Suspense>
             </VerticalStack>
           </Card>
         </Layout.Section>
