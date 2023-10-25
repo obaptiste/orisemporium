@@ -9,8 +9,11 @@ import {
   VerticalStack,
 } from "@shopify/polaris";
 
-import Upload from "../pages/upload";
+// import Upload from "../pages/upload";
 import { Suspense } from "react";
+import ProductDescriptor from "~/pages/prodDescriptor";
+
+export const runtime = "edge";
 
 export default function AdditionalPage() {
   return (
@@ -29,7 +32,7 @@ export default function AdditionalPage() {
                 found in <Code>app/routes/app.jsx</Code>. */}
               </Text>
               <Suspense>
-                <Upload />
+                <ProductDescriptor />
               </Suspense>
             </VerticalStack>
           </Card>
