@@ -4,19 +4,50 @@ import {
   Layout,
   Link,
   List,
+  Thumbnail,
+  Image,
   Page,
   Text,
   VerticalStack,
 } from "@shopify/polaris";
+import { boundary } from "@shopify/shopify-app-remix/server";
+import { AppProvider } from "@shopify/shopify-app-remix/react";
+
+// import OpenAI from "openai";
+// import { OpenAIStream, StreamingTextResponse } from "ai";
 
 // import Upload from "../pages/upload";
 import { Suspense } from "react";
 import ProductDescriptor from "~/pages/prodDescriptor";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+// import { json } from "@remix-run/node";
+// import escapeHtml from "escape-html";
+ import { authenticate } from "~/shopify.server";
+import { useLoaderData } from "@remix-run/react";
 
-export const runtime = "edge";
+export const runtime = 'edge';
+
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+
+export async function loader({
+  request
+}:LoaderArgs) {
+ await authenticate.admin(request);
+
+ // const apiUrl = "/api/completions";
+ return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
+}
+
 
 export default function AdditionalPage() {
+  const { apiKey } = useLoaderData<typeof loader>();
+
   return (
+    <AppProvider isEmbeddedApp apiKey={apiKey}>
+
     <Page>
       <ui-title-bar title="AI Speed Padder" />
       <Layout>
@@ -58,6 +89,7 @@ export default function AdditionalPage() {
         </Layout.Section>
       </Layout>
     </Page>
+    </AppProvider>
   );
 }
 
@@ -77,3 +109,13 @@ function Code({ children }) {
     </Box>
   );
 }
+
+// Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
+export function ErrorBoundary() {
+  return boundary.error(useRouteError());
+}
+
+export const headers = (headersArgs) => {
+  return boundary.headers(headersArgs);
+};
+

@@ -2,7 +2,7 @@
 
 name = "orisemporium"
 client_id = "07024a60a4afa0197d846c2d610273dc"
-application_url = "https://hope-treasury-rebound-absence.trycloudflare.com"
+application_url = "https://lil-proxy-acceptable-forecast.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://hope-treasury-rebound-absence.trycloudflare.com/auth/callback",
-  "https://hope-treasury-rebound-absence.trycloudflare.com/auth/shopify/callback",
-  "https://hope-treasury-rebound-absence.trycloudflare.com/api/auth/callback",
-  "https://hope-treasury-rebound-absence.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://lil-proxy-acceptable-forecast.trycloudflare.com/auth/callback",
+  "https://lil-proxy-acceptable-forecast.trycloudflare.com/auth/shopify/callback",
+  "https://lil-proxy-acceptable-forecast.trycloudflare.com/api/auth/callback",
+  "https://lil-proxy-acceptable-forecast.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]

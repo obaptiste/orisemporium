@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { json } from "@remix-run/node";
+import { json, LoaderFunction } from  "@remix-run/node";
 import {
   useActionData,
   useLoaderData,
@@ -12,13 +12,9 @@ import {
   Page,
   Layout,
   Text,
-  VerticalStack,
   Card,
   Button,
   HorizontalStack,
-  Box,
-  Divider,
-  List,
   EmptyState,
   IndexTable,
   Thumbnail,
@@ -29,15 +25,50 @@ import { authenticate } from "../shopify.server";
 
 import { getQRCodes } from "~/models/QRCode.server";
 import { DiamondAlertMajor, ImageMajor } from "@shopify/polaris-icons";
+import { analyzeImage } from "~/models/image-recognition";
+import { generateDescription } from "~/models/gpt";
+import { default as stream } from 'node:stream';
+import type { ReadableStream } from 'node:stream/web';
 
-export async function loader({ request }) {
+/**
+@imageFile object image file
+@return ReadableStream<Uint8Array>
+@description Analyze image file and return ReadableStream<Uint8Array>
+@example
+const imageFile = await request.blob();
+const response = await analyzeImage(imageFile)
+stream.Readable.fromWeb(response.body as ReadableStream<Uint8Array>)
+**/
+
+// const response = await analyzeImage(imageFile)
+// stream.Readable.fromWeb(response.body as ReadableStream<Uint8Array>)
+
+
+export let loader: LoaderFunction = async ({ request }) => {
   const { admin, session } = await authenticate.admin(request);
-  const qrCodes = await getQRCodes(session.shop, admin.graphql);
+  // const response = await fetch(analyseImage(imageFile))
+  // let imageFileBlob = await request.blob();
+
+  // const chunks: any[] = [];
+  // for (const chunk of await imageFileBlob.stream().getReader().read()) {
+  //   chunks.push(chunk);
+
+
+
+  // if (imageFile) {
+  //   const labels = await analyzeImage(imageFile);
+  //   const description = await generateDescription(labels);
+   const qrCodes = await getQRCodes(session.shop, admin.graphql);
 
   return json({
     qrCodes,
+    //description
   });
+
 }
+
+
+
 
 const EmptyQRCodeState = ({ onAction }) => (
   <EmptyState
@@ -382,4 +413,4 @@ export default function Index() {
 //       </VerticalStack>
 //     </Page>
 //   );
-// }
+//}
