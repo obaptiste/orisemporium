@@ -37,7 +37,7 @@ export async function POST(request) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'API-KEY': process.env.OPENAI_API_KEY,
+        'API-KEY':openai,
     },
      'prompt': request.params.prompt,
   });

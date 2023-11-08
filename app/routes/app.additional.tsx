@@ -19,34 +19,44 @@ import { AppProvider } from "@shopify/shopify-app-remix/react";
 // import Upload from "../pages/upload";
 import { Suspense } from "react";
 import ProductDescriptor from "~/pages/prodDescriptor";
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-// import { json } from "@remix-run/node";
+import type { LoaderArgs, ActionArgs } from "@remix-run/node";
+import { json, defer } from "@remix-run/node";
 // import escapeHtml from "escape-html";
  import { authenticate } from "~/shopify.server";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useRouteError, useActionData } from "@remix-run/react";
+
 
 export const runtime = 'edge';
 
+export function ErrorBoundary() {
+  return boundary.error(useRouteError());
+}
 // const openai = new OpenAI({
 //   apiKey: process.env.OPENAI_API_KEY,
 // });
 
-export async function loader({
-  request
-}:LoaderArgs) {
- await authenticate.admin(request);
+// export async function loader({
+//   request
+// }:LoaderArgs) {
 
- // const apiUrl = "/api/completions";
- return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
-}
+// const {session} = await authenticate.admin(request);
+// const { visiontoken } = await cloudvisionApi.authenticate(session);
+
+
+//  // const apiUrl = "/api/completions";
+//  return json({ apiKey: process.env.SHOPIFY_API_KEY || "" });
+// }
+
+// export async function action({ request }: ActionArgs) {
+//   const {session} = await authenticate.admin(request);
+// }
 
 
 export default function AdditionalPage() {
-  const { apiKey } = useLoaderData<typeof loader>();
+  //const { apiKey } = useLoaderData<typeof loader>();
 
   return (
-    <AppProvider isEmbeddedApp apiKey={apiKey}>
+    //<AppProvider isEmbeddedApp apiKey={apiKey}>
 
     <Page>
       <ui-title-bar title="AI Speed Padder" />
@@ -89,7 +99,7 @@ export default function AdditionalPage() {
         </Layout.Section>
       </Layout>
     </Page>
-    </AppProvider>
+  // </AppProvider>
   );
 }
 
@@ -111,11 +121,11 @@ function Code({ children }) {
 }
 
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
-export function ErrorBoundary() {
-  return boundary.error(useRouteError());
-}
+// export function ErrorBoundary() {
+//   return boundary.error(useRouteError());
+// }
 
-export const headers = (headersArgs) => {
-  return boundary.headers(headersArgs);
-};
+// export const headers = (headersArgs) => {
+//   return boundary.headers(headersArgs);
+// };
 

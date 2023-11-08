@@ -5,12 +5,12 @@ import { useCompletion } from "ai/react";
 export default function ProductDescriptor() {
   const { completion, input, isLoading, handleInputChange, handleSubmit } =
     useCompletion({
-      api: "/api/completion",
+      api: "/api/vision",
     });
 
   return (
     <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
-      <form action="/api/completion" method="POST" onSubmit={handleSubmit}>
+      <form action="/api/vision" method="POST" onSubmit={handleSubmit}>
         <label>
           Say Something...
           <input

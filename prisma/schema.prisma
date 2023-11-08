@@ -29,7 +29,17 @@ model QRCode {
   productId        String
   productHandle    String
   productVariantId String
+  description      String   @default("no description provided")
+  tags             Tag[]
   destination      String
   scans            Int      @default(0)
   createdAt        DateTime @default(now())
 }
+
+model Tag {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique @default("")
+  qrcodes          QRCode[]
+}
+
+

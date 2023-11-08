@@ -1,17 +1,16 @@
 import '@babel/polyfill'
 import 'isomorphic-fetch';
-import Router from 'koa-router';
-import { createShopifyAuth, verifyRequest } from "simple-koa-shopify-auth";
 import Shopify, {ApiVersion} from '@shopify/shopify-api';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const port = parseInt(process.env.PORT, 10) || 8081;
+/*'TODO: 'FIXME:
+This file should be an api but it needs completely reworking or removing
+*/
 
 const { SHOPIFY_API_KEY, SHOPIFY_API_SECRET } = process.env;
 
-const server = new Koa();
 server.keys = [SHOPIFY_API_SECRET || "" ];
 
 server.use(
