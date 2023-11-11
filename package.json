@@ -43,12 +43,14 @@
     "i": "^0.3.7",
     "isbot": "latest",
     "isomorphic-fetch": "^3.0.0",
+    "material-react-toastify": "^2.0.1",
     "npm": "^10.2.1",
     "openai": "^4.12.4",
     "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tiny-invariant": "^1.3.1"
+    "tiny-invariant": "^1.3.1",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.19.1",

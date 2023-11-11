@@ -1,17 +1,13 @@
 import {
-  Box,
   Card,
   Layout,
   Link,
   List,
-  Thumbnail,
-  Image,
   Page,
   Text,
   VerticalStack,
 } from "@shopify/polaris";
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { AppProvider } from "@shopify/shopify-app-remix/react";
 
 // import OpenAI from "openai";
 // import { OpenAIStream, StreamingTextResponse } from "ai";
@@ -19,11 +15,12 @@ import { AppProvider } from "@shopify/shopify-app-remix/react";
 // import Upload from "../pages/upload";
 import { Suspense } from "react";
 import ProductDescriptor from "~/pages/prodDescriptor";
-import type { LoaderArgs, ActionArgs } from "@remix-run/node";
-import { json, defer } from "@remix-run/node";
 // import escapeHtml from "escape-html";
- import { authenticate } from "~/shopify.server";
-import { useLoaderData, useRouteError, useActionData } from "@remix-run/react";
+import { useRouteError } from "@remix-run/react";
+import { LoaderArgs } from "@remix-run/node";
+// import OpenAI from "openai";
+// import { authenticate } from "~/shopify.server";
+// import AnalyseImage from "~/components/analyseImage";
 
 
 export const runtime = 'edge';
@@ -35,11 +32,13 @@ export function ErrorBoundary() {
 //   apiKey: process.env.OPENAI_API_KEY,
 // });
 
-// export async function loader({
-//   request
-// }:LoaderArgs) {
+export async function loader({
+  request
+}:LoaderArgs) {
+  return null
+}
 
-// const {session} = await authenticate.admin(request);
+ //const {session} = await authenticate.admin(request);
 // const { visiontoken } = await cloudvisionApi.authenticate(session);
 
 
@@ -49,6 +48,7 @@ export function ErrorBoundary() {
 
 // export async function action({ request }: ActionArgs) {
 //   const {session} = await authenticate.admin(request);
+//   return
 // }
 
 
@@ -75,6 +75,9 @@ export default function AdditionalPage() {
               <Suspense>
                 <ProductDescriptor />
               </Suspense>
+              {/* <Suspense>
+                <AnalyseImage imageUrl={'https://cdn.shopify.com/s/files/1/0827/0925/0336/files/oil_placeholder2.jpg?v=1695438431'}/>
+              </Suspense> */}
             </VerticalStack>
           </Card>
         </Layout.Section>
@@ -103,22 +106,7 @@ export default function AdditionalPage() {
   );
 }
 
-function Code({ children }) {
-  return (
-    <Box
-      as="span"
-      padding="025"
-      paddingInlineStart="1"
-      paddingInlineEnd="1"
-      background="bg-subdued"
-      borderWidth="1"
-      borderColor="border"
-      borderRadius="1"
-    >
-      <code>{children}</code>
-    </Box>
-  );
-}
+
 
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
 // export function ErrorBoundary() {

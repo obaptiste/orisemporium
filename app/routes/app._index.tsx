@@ -1,19 +1,16 @@
-import { useEffect } from "react";
-import { json, LoaderFunction } from  "@remix-run/node";
+
+import { json } from  "@remix-run/node";
+import type { LoaderFunction } from "@remix-run/node";
 import {
-  useActionData,
   useLoaderData,
   Link,
   useNavigate,
-  useNavigation,
-  useSubmit,
 } from "@remix-run/react";
 import {
   Page,
   Layout,
   Text,
   Card,
-  Button,
   HorizontalStack,
   EmptyState,
   IndexTable,
@@ -25,10 +22,6 @@ import { authenticate } from "../shopify.server";
 
 import { getQRCodes } from "~/models/QRCode.server";
 import { DiamondAlertMajor, ImageMajor } from "@shopify/polaris-icons";
-import { analyzeImage } from "~/models/image-recognition";
-import { generateDescription } from "~/models/gpt";
-import { default as stream } from 'node:stream';
-import type { ReadableStream } from 'node:stream/web';
 
 /**
 @imageFile object image file

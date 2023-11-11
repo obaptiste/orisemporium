@@ -4,7 +4,9 @@ import OpenAI from "openai";
 // otherwise, you would need to declare them.
 
 // Create a new instance of OpenAI.
-const openai = new OpenAI();
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 async function main(): Promise<void> {
   // Make sure to handle exceptions with a try/catch block.
@@ -14,14 +16,14 @@ async function main(): Promise<void> {
       messages: [
         {
           role: "user",
-          content: JSON.stringify([
+          content: `[
             { type: "text", text: "What's in this image?" },
             {
               type: "image_url",
               image_url:
                 "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg",
-            } ?? "",
-          ]),
+            },
+          ]`,
         },
       ],
     });

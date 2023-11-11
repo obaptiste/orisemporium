@@ -3,27 +3,11 @@ import {
   LiveReload,
   Meta,
   Outlet,
+  Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 
-import type { LoaderArgs } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import shopify from "./shopify.server";
-
-// dotenv.config();
-
-export async function
-  loader({ request }: LoaderArgs) {
-    await shopify.authenticate.admin(request);
-
-    return json({
-      apiKey: process.env.SHOPIFY_API_KEY,
-    });
-  }
-
 export default function App() {
-  const { apiKey } = useLoaderData<typeof loader>();
   return (
     <html>
       <head>
@@ -36,6 +20,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <LiveReload />
+        <Scripts />
       </body>
     </html>
   );
