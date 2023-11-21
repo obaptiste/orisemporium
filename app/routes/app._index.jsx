@@ -1,11 +1,7 @@
 
-import { json } from  "@remix-run/node";
-import type { LoaderFunction } from "@remix-run/node";
-import {
-  useLoaderData,
-  Link,
-  useNavigate,
-} from "@remix-run/react";
+
+import { json } from "@remix-run/node";
+import { useLoaderData, Link, useNavigate } from "@remix-run/react";
 import {
   Page,
   Layout,
@@ -36,8 +32,7 @@ stream.Readable.fromWeb(response.body as ReadableStream<Uint8Array>)
 // const response = await analyzeImage(imageFile)
 // stream.Readable.fromWeb(response.body as ReadableStream<Uint8Array>)
 
-
-export let loader: LoaderFunction = async ({ request }) => {
+export let loader = async ({ request }) => {
   const { admin, session } = await authenticate.admin(request);
   // const response = await fetch(analyseImage(imageFile))
   // let imageFileBlob = await request.blob();
@@ -46,22 +41,16 @@ export let loader: LoaderFunction = async ({ request }) => {
   // for (const chunk of await imageFileBlob.stream().getReader().read()) {
   //   chunks.push(chunk);
 
-
-
   // if (imageFile) {
   //   const labels = await analyzeImage(imageFile);
   //   const description = await generateDescription(labels);
-   const qrCodes = await getQRCodes(session.shop, admin.graphql);
+  const qrCodes = await getQRCodes(session.shop, admin.graphql);
 
   return json({
     qrCodes,
     //description
   });
-
-}
-
-
-
+};
 
 const EmptyQRCodeState = ({ onAction }) => (
   <EmptyState

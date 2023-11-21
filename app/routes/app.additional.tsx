@@ -17,9 +17,10 @@ import { Suspense } from "react";
 import ProductDescriptor from "~/pages/prodDescriptor";
 // import escapeHtml from "escape-html";
 import { useRouteError } from "@remix-run/react";
-import { LoaderArgs } from "@remix-run/node";
+import type { ActionArgs, LoaderFunction, LoaderArgs } from "@remix-run/node";
 // import OpenAI from "openai";
-// import { authenticate } from "~/shopify.server";
+import { authenticate } from "~/shopify.server";
+import authenticatedFetch from "@shopify/app-bridge";
 // import AnalyseImage from "~/components/analyseImage";
 
 

@@ -2,7 +2,7 @@
 
 name = "orisemporium"
 client_id = "07024a60a4afa0197d846c2d610273dc"
-application_url = "https://possibility-substance-salvador-impose.trycloudflare.com"
+application_url = "https://largest-consists-tampa-belts.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://possibility-substance-salvador-impose.trycloudflare.com/auth/callback",
-  "https://possibility-substance-salvador-impose.trycloudflare.com/auth/shopify/callback",
-  "https://possibility-substance-salvador-impose.trycloudflare.com/api/auth/callback",
-  "https://possibility-substance-salvador-impose.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://largest-consists-tampa-belts.trycloudflare.com/auth/callback",
+  "https://largest-consists-tampa-belts.trycloudflare.com/auth/shopify/callback",
+  "https://largest-consists-tampa-belts.trycloudflare.com/api/auth/callback",
+  "https://largest-consists-tampa-belts.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]
